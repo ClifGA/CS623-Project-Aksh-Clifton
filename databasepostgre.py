@@ -48,21 +48,6 @@ try:
     cur.execute("UPDATE Stock SET prod = %s WHERE prod = %s;", ('pp1', 'p1'))
     show_state(3)
 
-    # 4. Rename depot 'd1' to 'dd1' in Depot and Stock
-    cur.execute("UPDATE Depot SET dep = %s WHERE dep = %s;", ('dd1', 'd1'))
-    cur.execute("UPDATE Stock SET dep = %s WHERE dep = %s;", ('dd1', 'd1'))
-    show_state(4)
-
-    # 5. Add product (p100, cd, 5) in Product and (p100, d2, 50) in Stock
-    cur.execute("INSERT INTO Product (prod, pname, price) VALUES (%s, %s, %s);", ('p100', 'cd', 5))
-    cur.execute("INSERT INTO Stock (prod, dep, quantity) VALUES (%s, %s, %s);", ('p100', 'd2', 50))
-    show_state(5)
-
-    # 6. Add depot (d100, Chicago, 100) in Depot and (p1, d100, 100) in Stock
-    cur.execute("INSERT INTO Depot (dep, addr, volume) VALUES (%s, %s, %s);", ('d100', 'Chicago', 100))
-    cur.execute("INSERT INTO Stock (prod, dep, quantity) VALUES (%s, %s, %s);", ('p1', 'd100', 100))
-    show_state(6)
-
     # Commit all changes
     con.commit()
     print("\nAll operations completed successfully.")
